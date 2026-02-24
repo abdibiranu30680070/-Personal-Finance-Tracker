@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 
-const JWT_SECRET = 'your-very-secure-and-secret-key'; // In production, use process.env.JWT_SECRET
+const JWT_SECRET = process.env.JWT_SECRET || 'dev-secret-key-123';
 
 const authMiddleware = (req, res, next) => {
     const authHeader = req.headers.authorization;
