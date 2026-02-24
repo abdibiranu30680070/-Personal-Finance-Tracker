@@ -11,6 +11,13 @@ const reportRoutes = require('./routes/reports');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+// Startup Checks
+console.log('--- Startup Configuration ---');
+console.log('PORT:', PORT);
+console.log('DATABASE_URL:', process.env.DATABASE_URL ? 'Configured (Masked)' : 'NOT CONFIGURED');
+console.log('JWT_SECRET:', process.env.JWT_SECRET ? 'Configured (Masked)' : 'NOT CONFIGURED');
+console.log('-----------------------------');
+
 // Middleware
 app.use(cors({
     origin: ['https://personal-finance-tracker-two-beta.vercel.app', 'http://localhost:5173'],
