@@ -1,111 +1,91 @@
-# Ethio Telecom Finance Tracker
+# 🏦 Ethio Finance Tracker
 
-A specialized, premium full-stack financial management application tailored for the Ethiopian market. Built with React, Node.js, Express, and PostgreSQL, featuring Ethio Telecom branding and bilingual (English/Amharic) support.
+A specialized, premium full-stack financial management application tailored for the Ethiopian market. This project features a robust **React** frontend, a **Node.js/Express** backend, and a **PostgreSQL** database.
+
+## 🚀 Live Application
+- **Frontend URL**: [https://personal-finance-tracker-two-beta.vercel.app/](https://personal-finance-tracker-two-beta.vercel.app/)
+- **Backend Health Check**: [https://personal-finance-tracker-5w6m.onrender.com/health](https://personal-finance-tracker-5w6m.onrender.com/health)
 
 ---
 
-## 🚀 Setup Instructions
+## 🏗️ Architecture Overview
 
-### Prerequisites
-- **Node.js**: v18 or higher
-- **PostgreSQL**: v14 or higher (or Docker)
+The application follows a **Decoupled Monorepo Architecture** with a clear separation of concerns:
+
+- **Frontend (Client)**: Built with **React** and **Vite**. Uses **Context API** for global state management and **Tailwind CSS** for a premium, responsive UI.
+- **Backend (Server)**: A **Node.js/Express** REST API. It uses a **Service-Controller-Route** pattern for modularity.
+- **Database (Storage)**: A **PostgreSQL** database managed with connection pooling for high performance.
+- **Security**: Implements **JWT (JSON Web Tokens)** for authentication and **bcryptjs** for secure password hashing.
+
+### 🗺️ System Flow
+`User Interface (React) <--> API Bridge (Axios) <--> Express Server <--> PostgreSQL`
+
+---
+
+## 🛠️ Setup & Local Development
+
+### 1. Prerequisites
+- **Node.js** (v18+)
+- **PostgreSQL**
 - **Git**
 
-### 1. Database Initialization
-This project uses PostgreSQL for data persistence.
-
-**Option A: Docker (Recommended)**
-```bash
-docker-compose up -d
-```
-The database will automatically initialize with the schema found in `backend/schema.sql`.
-
-**Option B: Manual Installation**
-1. Create a database named `finance_tracker`.
-2. Run the SQL script located at `backend/schema.sql` to create the tables.
-
-### 2. Environment Configuration
+### 2. Environment Setup
 Create a `.env` file in the `backend/` directory:
 ```env
 PORT=5000
-DB_USER=your_postgres_user
-DB_PASSWORD=your_postgres_password
-DB_HOST=localhost
-DB_NAME=finance_tracker
-DB_PORT=5432
-JWT_SECRET=your_super_secret_key
+DATABASE_URL=postgres://user:password@host:port/dbname
+JWT_SECRET=your_random_secret_string
 ```
 
----
+### 3. How to Run Locally
 
-## 🛠 How to Run
-
-### Backend (Server)
-The backend handles authentication, validation, and data processing.
+#### Backend (Server)
 ```bash
 cd backend
 npm install
 npm run dev
 ```
-*Port: `http://localhost:5000`*
+*Runs on `http://localhost:5000`*
 
-### Frontend (Client)
-The frontend provides a state-of-the-art UI with Ethio Telecom HSL color tokens.
+#### Frontend (Client)
 ```bash
 cd frontend
 npm install
 npm run dev
 ```
-*URL: `http://localhost:5173`*
+*Runs on `http://localhost:5173`*
 
 ---
 
-## 🏗 Architecture Overview
+## 📊 Database Schema Description
 
-The application follows a **Decoupled Full-Stack Architecture**:
+The database blueprint is designed for data integrity and scalability:
 
-### 1. The Engine (Backend)
-- **server.js**: Entry point initializing Express and mounting specialized routes.
-- **db.js**: Connection pooling using `pg` for high-performance SQL execution.
-- **Middleware**: 
-  - `authMiddleware.js`: JWT-based gatekeeping for secure routes.
-  - `validationMiddleware.js`: Schema validation for data integrity.
+- **`users`**: Stores user identity credentials, profile names, and profile pictures.
+- **`transactions`**: Stores financial entries (Income/Expense), categorized and linked to users via `user_id`. Supports `ON DELETE CASCADE` to ensure data cleanliness.
+- **`assets`**: Stores metadata for generated files or uploaded profile pictures.
 
-### 2. The Face (Frontend)
-- **Context API (DataContext.jsx)**: Centralized state management for global transaction data.
-- **Component Design**: Premium styling using Tailwind CSS with custom Ethio Telecom HSL color palettes.
-- **Micro-Animations**: Subtle UI responses for a high-end user experience.
-
-### 3. Reporting System
-- **jsPDF & AutoTable**: Client-side generation of high-quality financial reports.
-- **Archive Logic**: Server-side archiving of official reports to the project root.
+*See `backend/schema.sql` for the full SQL DDL definitions.*
 
 ---
 
 ## 📡 API Documentation
 
-### Authentication (`/api/profile`)
-- `POST /api/profile/register`: Register a new user.
-- `POST /api/profile/login`: Authenticate and receive a JWT.
-- `GET /api/profile/me`: Get current logged-in user profile.
+Professional API testing is available via Postman.
 
-### Transactions (`/api/transactions`)
-- `GET /api/transactions`: Retrieve all user-specific transactions.
-- `POST /api/transactions`: Create a new income/expense record.
-- `PUT /api/transactions/:id`: Modify an existing record.
-- `DELETE /api/transactions/:id`: Remove a record.
-
-### Intelligence (`/api/reports` / `/api/summary`)
-- `GET /api/summary`: Get dashboard metrics (Daily/Weekly/Monthly totals).
-- `POST /api/reports/save`: Archive a generated PDF report to the server's root folder.
+- **Import File**: `docs/postman_collection.json`
+- **Key Modules**:
+    - **Authentication**: `POST /api/profile/login`, `POST /api/profile/register`
+    - **Transactions**: `GET`, `POST`, `PUT`, `DELETE` at `/api/transactions`
+    - **Summaries**: `GET /api/summary` for dashboard analytics.
 
 ---
 
-## 🇪🇹 Branding Rationale
-The UI is built using **Ethio Telecom's Brand Guidelines**:
-- **Brilliant Orange**: Used for primary calls to action.
-- **Sky Blue**: Used for filtering and informative headers.
-- **Bilingual Interface**: Seamless integration of Amharic for accessibility in the local market.
+## 📺 Walkthrough & Presentation
+
+A detailed, file-by-file walkthrough for the code review is available here:
+- **Presentation Guide**: [docs/walkthrough.md](docs/walkthrough.md)
+- **Deployment Guide**: [docs/deployment.md](docs/deployment.md)
 
 ---
-Official Project Documentation — © 2026 Ethio Telecom
+Official Project Submission — © 2026 Ethio Finance Team
