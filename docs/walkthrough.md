@@ -106,6 +106,12 @@ Services are where the "heavy lifting" happens. They contain the actual SQL logi
 
 ---
 
+## 🚀 Live Application
+Your project is now live and accessible to the world!
+**URL**: [https://personal-finance-tracker-two-beta.vercel.app/](https://personal-finance-tracker-two-beta.vercel.app/)
+
+---
+
 ## 🚀 Final Presentation Summary
 Your code is built with **Professional Standards**:
 1. **Security**: Password hashing and JWT token protection.

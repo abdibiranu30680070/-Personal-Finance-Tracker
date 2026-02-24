@@ -2,9 +2,9 @@ import React from "react";
 import { Wallet } from "lucide-react";
 import Stat from "./Stat";
 
-const HeroSection = () => {
+const HeroSection = ({ onGetStarted }) => {
     return (
-        <div className="w-full relative py-6 md:py-8 lg:py-0">
+        <div className="w-full relative py-6 md:py-8 lg:py-0 animate-fade-in">
             <div className="space-y-6 md:space-y-10 z-10 max-w-full sm:max-w-3xl relative">
                 {/* Logo */}
                 <div className="flex items-center gap-3 animate-fade-in-down">
@@ -32,8 +32,36 @@ const HeroSection = () => {
                     </p>
                 </div>
 
+                {/* Call-to-action button */}
+                <div className="mt-8">
+                    <button
+                        onClick={onGetStarted}
+                        className="px-8 py-4 bg-orange-600 text-white font-bold rounded-full shadow-lg hover:bg-orange-700 hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300"
+                    >
+                        Get Started
+                    </button>
+                </div>
+
                 {/* Removed Stats Section - Non Functional */}
             </div>
+
+            {/* decorative wave at bottom */}
+            <svg
+                className="absolute bottom-0 left-0 w-full"
+                viewBox="0 0 1440 120"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <path
+                    fill="url(#grad)"
+                    d="M0,40 C360,120 1080,0 1440,60 L1440,120 L0,120 Z"
+                />
+                <defs>
+                    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stopColor="#F97316" />
+                        <stop offset="100%" stopColor="#FCD34D" />
+                    </linearGradient>
+                </defs>
+            </svg>
         </div>
     );
 };

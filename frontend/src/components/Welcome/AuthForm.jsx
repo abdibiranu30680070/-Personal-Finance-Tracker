@@ -55,7 +55,7 @@ const AuthForm = ({ isLogin, onSubmit, isSubmitting }) => {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-6 animate-fade-in-up">
             {!isLogin && (
                 <InputField
                     icon={<User size={20} />}
