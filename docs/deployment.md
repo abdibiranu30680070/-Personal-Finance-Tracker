@@ -18,7 +18,7 @@ To get your application online for free, I recommend the following "Gold Standar
 
 ### Step 1: Database Setup (Neon)
 1. Sign up at [Neon.tech](https://neon.tech).
-2. Create a new project called `financeethio-`.
+2. Create a new project called `ethio-finance`.
 3. Copy your **Connection String** (it looks like `postgres://user:password@host/dbname`).
 4. Keep this safe; you will need it for the backend.
 
@@ -34,7 +34,7 @@ To get your application online for free, I recommend the following "Gold Standar
     - `DATABASE_URL`: (Paste your Neon connection string here)
     - `JWT_SECRET`: (Create a random long string)
     - `PORT`: `10000`
-6. Once deployed, copy your Render URL (e.g., `https://ethio-backend.onrender.com`).
+6. Once deployed, your URL is: `https://personal-finance-tracker-5w6m.onrender.com`
 
 ### Step 3: Frontend Deployment (Vercel)
 1. Sign up at [Vercel.com](https://vercel.com).
@@ -43,7 +43,8 @@ To get your application online for free, I recommend the following "Gold Standar
 4. In the **Build & Development Settings**:
     - **Root Directory**: Select `frontend` (or leave as root if you prefer).
 5. Add an **Environment Variable**:
-    - `VITE_API_URL`: (Paste your Backend Render URL here)
+    - **Key**: `VITE_API_URL`
+    - **Value**: `https://personal-finance-tracker-5w6m.onrender.com/api` (Remember to include the `/api` at the end!)
 6. Click **Deploy**.
 
 ---
