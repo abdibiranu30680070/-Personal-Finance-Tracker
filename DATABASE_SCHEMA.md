@@ -1,14 +1,14 @@
-# Ethio Telecom Finance Tracker: Database Schema
+Ethio Telecom Finance Tracker: Database Schema
 
 This document provides a detailed overview of the PostgreSQL database structure used in the Ethio Telecom Personal Finance Tracker.
 
 ---
 
-## 🏗 Entity Relationship Summary
+🏗 Entity Relationship Summary
 
-The database consists of two primary tables with a **One-to-Many** relationship:
-- One **User** can have many **Transactions**.
-- Each **Transaction** belongs to exactly one **User**.
+The database consists of two primary tables with a One-to-Many relationship:
+- One User can have many Transactions.
+- Each Transaction belongs to exactly one User.
 
 ![Ethio Finance ERD Diagram](/home/abdi/.gemini/antigravity/brain/613e08b0-ce92-468f-aab4-a6286c965fff/ethio_db_erd_diagram_1771680927938.png)
 
@@ -35,9 +35,9 @@ erDiagram
 
 ---
 
-## 📋 Table Definitions
+📋 Table Definitions
 
-### 1. `users`
+1. `users`
 Stores student/user authentication and profile information.
 
 | Column | Type | Constraints | Description |
@@ -48,7 +48,7 @@ Stores student/user authentication and profile information.
 | `password` | `VARCHAR(255)` | `NOT NULL` | Hashed password. |
 | `profile_picture` | `TEXT` | `NULL` | Base64 string or URL for profile image. |
 
-### 2. `transactions`
+2. `transactions`
 Stores all financial records for every user.
 
 | Column | Type | Constraints | Description |
@@ -63,10 +63,10 @@ Stores all financial records for every user.
 
 ---
 
-## 🔒 Data Integrity Rules
-- **On Delete Cascade**: If a user is deleted, all their associated transactions are automatically removed to prevent orphaned data.
-- **Unique Constraint**: The system prevents duplicate emails to ensure account security.
-- **Check Constraint**: The `type` column only accepts 'income' or 'expense' to maintain data consistency.
+🔒 Data Integrity Rules
+- On Delete Cascade: If a user is deleted, all their associated transactions are automatically removed to prevent orphaned data.
+- Unique Constraint: The system prevents duplicate emails to ensure account security.
+- Check Constraint: The `type` column only accepts 'income' or 'expense' to maintain data consistency.
 
 ---
 Official Project Documentation — © 2026 Ethio Telecom
