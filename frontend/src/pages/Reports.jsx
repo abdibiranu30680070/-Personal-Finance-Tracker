@@ -6,8 +6,7 @@ import {
     TrendingDown,
     Calendar,
     ArrowUpRight,
-    ArrowDownRight,
-    Wallet
+    ArrowDownRight
 } from 'lucide-react';
 import {
     Chart as ChartJS,
@@ -61,12 +60,6 @@ const Reports = () => {
         });
     }, [transactions, startDate, endDate]);
 
-    const openingBalance = useMemo(() => {
-        const start = new Date(startDate);
-        return transactions
-            .filter(t => new Date(t.date) < start)
-            .reduce((acc, t) => t.type === 'income' ? acc + parseFloat(t.amount) : acc - parseFloat(t.amount), 0);
-    }, [transactions, startDate]);
 
     const stats = useMemo(() => {
         const income = filteredTransactions
@@ -119,11 +112,11 @@ const Reports = () => {
         doc.setFontSize(14);
         doc.text("Financial Metrics (ETB)", 25, 88);
         doc.setFontSize(11);
-        doc.text(`Opening Balance: ETB ${openingBalance.toLocaleString()}`, 25, 98);
-        doc.text(`Total Income: + ETB ${stats.income.toLocaleString()}`, 25, 106);
-        doc.text(`Total Expenses: - ETB ${stats.expense.toLocaleString()}`, 25, 114);
+        // Note: Opening balance is not tracked since there is no input
+        doc.text(`Total Income: + ETB ${stats.income.toLocaleString()}`, 25, 98);
+        doc.text(`Total Expenses: - ETB ${stats.expense.toLocaleString()}`, 25, 106);
         doc.setFont("helvetica", "bold");
-        doc.text(`Closing Balance: ETB ${(openingBalance + stats.balance).toLocaleString()}`, 25, 122);
+        doc.text(`Closing Balance: ETB ${stats.balance.toLocaleString()}`, 25, 114);
 
         // Transactions
         doc.autoTable({
@@ -208,13 +201,6 @@ const Reports = () => {
 
             {/* Summary Cards */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <ReportStat
-                    label="Opening Balance"
-                    value={openingBalance}
-                    icon={<Wallet size={20} />}
-                    color="text-slate-900"
-                    bgColor="bg-slate-50"
-                />
                 <ReportStat
                     label="Period Income"
                     value={stats.income}
