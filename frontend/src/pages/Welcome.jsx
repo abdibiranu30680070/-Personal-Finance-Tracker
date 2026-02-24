@@ -20,16 +20,10 @@ const Welcome = () => {
 
         toast.promise(authPromise, {
             loading: isLogin ? "Logging you in..." : "Creating secure account...",
-            success: {
-                render: isLogin ? "Welcome back!" : "Account created successfully!",
-                duration: 3000,
-            },
-            error: {
-                render: (err) => {
-                    const msg = err?.response?.data?.error;
-                    return msg || "Authentication failed";
-                },
-                duration: 4000,
+            success: isLogin ? "Welcome back!" : "Account created successfully!",
+            error: (err) => {
+                const msg = err?.response?.data?.error;
+                return msg || "Authentication failed";
             }
         });
 
