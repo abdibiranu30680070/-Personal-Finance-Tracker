@@ -5,7 +5,7 @@ const RecentTransactions = ({ transactions }) => (
     <div className="xl:col-span-2 bg-white p-8 rounded-3xl border border-gray-100 shadow-sm text-gray-800">
         <div className="flex justify-between items-center mb-8">
             <h2 className="text-xl font-bold text-gray-800">Recent Transactions</h2>
-            <a href="/transactions" className="text-sm font-bold text-blue-600 hover:underline">View All</a>
+            <a href="/" className="text-sm font-bold text-blue-600 hover:underline">View All</a>
         </div>
         <div className="space-y-4">
             {transactions.map(t => (
