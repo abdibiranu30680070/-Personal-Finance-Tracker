@@ -22,7 +22,7 @@ import {
 } from 'chart.js';
 import { format, startOfMonth, endOfMonth, isWithinInterval, subMonths } from 'date-fns';
 import jsPDF from 'jspdf';
-import 'jspdf-autotable';
+import autoTable from 'jspdf-autotable';
 import toast from 'react-hot-toast';
 
 // Modular Reports Components
@@ -119,7 +119,7 @@ const Reports = () => {
         doc.text(`Closing Balance: ETB ${stats.balance.toLocaleString()}`, 25, 114);
 
         // Transactions
-        doc.autoTable({
+        autoTable(doc, {
             startY: 140,
             head: [['Date', 'Description', 'Category', 'Type', 'Amount (ETB)']],
             body: filteredTransactions.map(t => [
