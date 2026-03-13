@@ -87,7 +87,7 @@ const Reports = () => {
         };
     }, [filteredTransactions]);
 
-    const savePDFToRoot = async () => {
+    const printPDFReport = async () => {
         const doc = new jsPDF();
         // Header
         doc.setFillColor(242, 112, 33);
@@ -133,23 +133,17 @@ const Reports = () => {
             margin: { left: 15, right: 15 }
         });
 
-        const pdfBase64 = doc.output('datauristring');
         const fileName = `EthioFinance_Report_${startDate}_to_${endDate}_${Date.now()}.pdf`;
-
-        const savePromise = api.saveReport({ pdfData: pdfBase64, fileName });
-
-        toast.promise(savePromise, {
-            loading: 'Archiving report to root folder...',
-            success: 'Report successfully saved to project root!',
-            error: 'Failed to save report to server root.'
-        });
+        doc.autoPrint();
+        doc.save(fileName);
+        toast.success('PDF report ready!');
     };
 
     return (
         <div className="space-y-8 pb-12">
             <ReportsHeader
-                onSave={savePDFToRoot}
-                isSaveDisabled={filteredTransactions.length === 0}
+                onPrint={printPDFReport}
+                isPrintDisabled={filteredTransactions.length === 0}
             />
 
             {/* Date Filters */}
